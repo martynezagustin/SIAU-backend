@@ -22,6 +22,9 @@ app.use(cors())
 app.use("/", clientRoutes)
 app.use("/", userRoutes)
 app.use("/", reformRoutes)
+app.get("/", (req,res) => {
+    res.send("Backend running!")
+})
 
 
 app.listen(PORT)
