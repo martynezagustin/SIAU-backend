@@ -49,7 +49,7 @@ const clientController = {
             if (!clientToDelete) {
                 return res.status(404).send({message: "No se pudo encontrar el cliente."})
             }
-            res.status(200).send("Cliente borrado exitosamente.")
+            res.status(200).send({message:"Cliente borrado exitosamente."})
         } catch (error) {
             res.status(500).send("Ha ocurrido un error de servidor.")
         }
