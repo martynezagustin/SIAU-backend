@@ -10,12 +10,12 @@ router.get("/clients", authMiddleware, clientController.getClients)
 router.post("/add-client", authMiddleware, clientController.addClient)
 
 //borra el cliente
-router.delete("/delete-client/:id", authMiddleware, clientController.deleteClient)
+router.delete("/delete-client/:clientId", authMiddleware, clientController.deleteClient)
 
 //obtiene el cliente por su id
 router.get("/:clientId", authMiddleware, clientController.getClientById)
 
 //actualiza el cliente.
-router.put("/update-client/:id", authMiddleware, clientController.updateClient)
+router.put("/update-client/:clientId", authMiddleware, clientController.updateClient)
 
 module.exports = router
