@@ -47,7 +47,7 @@ const clientController = {
         try {
             const clientToDelete = await Client.findByIdAndDelete(req.params.id)
             if (!clientToDelete) {
-                res.status(404).send("No se pudo encontrar el cliente.")
+                return res.status(404).send({message: "No se pudo encontrar el cliente."})
             }
             res.status(200).send("Cliente borrado exitosamente.")
         } catch (error) {
