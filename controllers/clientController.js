@@ -56,8 +56,8 @@ const clientController = {
     },
     updateClient: async function (req, res) {
         try {
-            const { name, lastname, age, address, vehicleBrand, vehicleModel, mileage } = req.body
-            const updatedClient = await Client.findByIdAndUpdate(req.params.id, { name, lastname, age, address, vehicleBrand, vehicleModel, mileage }, { new: true })
+            const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
+            const updatedClient = await Client.findByIdAndUpdate(req.params.id, { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
             if (!updatedClient) {
                 res.status(404).send("No se pudo localizar el cliente.")
             }
