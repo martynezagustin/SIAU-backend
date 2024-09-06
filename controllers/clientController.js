@@ -9,7 +9,7 @@ const clientController = {
             const newClient = new Client({ name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage })
             const busqueda = await Client.findOne({ name, lastname })
             if (busqueda) {
-                return res.status(404).send("El cliente ya existe.")
+                return res.status(404).send({message:"El cliente ya existe."})
             }
             const reformsAdd = reforms.map(async (reform) => {
                 const newReform = new Reform({ ...reform, clientId: newClient._id })
