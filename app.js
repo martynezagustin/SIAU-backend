@@ -17,7 +17,11 @@ connectDB()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 app.use(loggerMiddleware)
-app.use(cors())
+app.use(cors({
+    origin: 'https://siau-srl.netlify.app',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorizacion'
+}))
 //rutas
 app.use("/", clientRoutes)
 app.use("/", userRoutes)
