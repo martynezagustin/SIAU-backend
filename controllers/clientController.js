@@ -4,7 +4,7 @@ const Piece = require("../models/pieceModel")
 
 const clientController = {
     addClient: async function (req, res) {
-        const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, reforms, mileage } = req.body
+        const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage, reforms } = req.body
         try {
             const newClient = new Client({ name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage })
             const busqueda = await Client.findOne({ name, lastname })
