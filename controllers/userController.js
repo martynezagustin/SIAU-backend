@@ -32,11 +32,11 @@ const userController = {
         try {
             const user = await User.findOne({ username })
             if (!user) {
-                return res.status(404).json({ message: "No se ha encontrado el usuario." })
+                return res.status(404).send({ message: "No se ha encontrado el usuario." })
             }
             const isValidPassword = await bcrypt.compare(password, user.password)
             if (!isValidPassword) {
-                return res.status(401).json({ message: "Credenciales incorrectas." })
+                return res.status(401).send({ message: "Credenciales incorrectas." })
             }
             const token = jwt.sign({ username: user.username, role: user.role }, "secret_key", { expiresIn: "55m" })//3 parametros, como el username y el role. El paramettro secret_key y el tiempo de expiracion: ({}, "", {})
             res.json({ token, userId: user._id }) //PASARLE DOS PARAMETROS
