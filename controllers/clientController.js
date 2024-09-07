@@ -10,6 +10,7 @@ const clientController = {
             const busqueda = await Client.findOne({ name, lastname })
             if (busqueda) {
                 return res.status(404).send({message:"El cliente ya existe."})
+                
             }
             const reformsAdd = reforms.map(async (reform) => {
                 const newReform = new Reform({ ...reform, clientId: newClient._id })
@@ -56,14 +57,17 @@ const clientController = {
     },
     updateClient: async function (req, res) {
         try {
+            console.log(req.params.clientId);
+            
             const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
-            const updatedClient = await Client.findByIdAndUpdate(req.params.id, { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
+            const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
             if (!updatedClient) {
-                res.status(404).send("No se pudo localizar el cliente.")
+                return res.status(404).send("No se pudo actualizar el cliente.")
             }
-            res.json(updatedClient)
+            res.status(200).send({message: "Cliente actualizado exitosamente."})
         } catch (error) {
-            res.status(500).send("Ha ocurrido un error de servidor.")
+            console.log(error)
+            res.status(500).send({message: "Ha ocurrido un error de servidor. " + error})
         }
     },
     getClientById: async function (req, res) {
