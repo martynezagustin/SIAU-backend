@@ -52,7 +52,7 @@ const userController = {
             }
             res.json(users)
         } catch (error) {
-            return res.status(500).send("Ha ocurrido un error al mostrar los usuarios: " + error)
+            return res.status(500).json({message: "Ha ocurrido un error al mostrar los usuarios: " + error})
         }
     },
     logoutUser: async function (req, res) {
