@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000
 require("dotenv").config()
 
 connectDB()
+app.listen(PORT)
 
 //middlewares
 app.use(bodyParser.urlencoded({extended:true}))
