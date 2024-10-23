@@ -14,9 +14,13 @@ const ReformSchema = new mongoose.Schema({
         required:false
         
     },
-    order: {
+    repairNumber: {
         type: Number,
         required:true
+    },
+    ticketNumber: {
+        type: Number,
+        required: true
     },
     date: {
         type: Date,
@@ -26,7 +30,11 @@ const ReformSchema = new mongoose.Schema({
     pieces: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Piece"
-    }]
+    }],
+    labour: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Labour"
+    },
 })
 
 module.exports = mongoose.model("Reform", ReformSchema)

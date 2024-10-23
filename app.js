@@ -25,6 +25,3 @@ app.use("/", reformRoutes)
 app.get("/", (req,res) => {
     res.send("Backend running!")
 })
-
-
-app.listen(PORT)

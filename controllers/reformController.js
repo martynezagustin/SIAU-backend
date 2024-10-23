@@ -8,7 +8,6 @@ const reformController = {
         try {
             const { clientId } = req.params
             const { reforms } = req.body
-            //convertir fecha a formato ISO
             const client = await Client.findById(clientId)
             if (!client) {
                 return res.status(404).send("No se ha encontrado el cliente.")
@@ -70,7 +69,7 @@ const reformController = {
     updateReform: async function (req,res){
         try {
             const {reformId} = req.params
-            const {description, date, amount, order, pieces} = req.body
+            const {description, date, amount, repairNumber, ticketNumber, pieces} = req.body
             const reform = await Reform.findById(reformId)
             if(!reform|| !reform.pieces){
                 return res.status(404).send("No se encontraron: a) La reforma; b) Las piezas.")
@@ -86,7 +85,7 @@ const reformController = {
             })
             
             reform.pieces = await Promise.all(piecesIds)
-            const updatedReform = await Reform.findByIdAndUpdate(reformId, {description, date: reform.date, amount, order, pieces: reform.pieces}, {new: true})
+            const updatedReform = await Reform.findByIdAndUpdate(reformId, {description, date, amount, repairNumber, ticketNumber, pieces: reform.pieces}, {new: true})
             await reform.save()
             res.status(200).json(updatedReform)
         } catch (error) {
