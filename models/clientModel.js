@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const ClientSchema = new mongoose.Schema({
     name: {type: String, required: true},
     lastname: {type: String, required: true},
-    age: {type: Number, required: true},
+    patentVehicle: {type: String}, //numero de patente, hay que agregar
     address: {type: String, required: true},
     phone: {type: String, required: true},
     vehicleBrand: {type: String, required: true},

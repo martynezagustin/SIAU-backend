@@ -4,9 +4,9 @@ const Piece = require("../models/pieceModel")
 
 const clientController = {
     addClient: async function (req, res) {
-        const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage, reforms } = req.body
+        const { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage, reforms } = req.body
         try {
-            const newClient = new Client({ name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage })
+            const newClient = new Client({ name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage })
             const busqueda = await Client.findOne({ name, lastname })
             if (busqueda) {
                 return res.status(404).send({message:"El cliente ya existe."})
@@ -59,7 +59,7 @@ const clientController = {
         try {
             console.log(req.params.clientId);
             
-            const { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
+            const { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
             const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
             if (!updatedClient) {
                 return res.status(404).send("No se pudo actualizar el cliente.")
