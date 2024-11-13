@@ -60,7 +60,7 @@ const clientController = {
             console.log(req.params.clientId);
             
             const { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
-            const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, age, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
+            const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
             if (!updatedClient) {
                 return res.status(404).send("No se pudo actualizar el cliente.")
             }
