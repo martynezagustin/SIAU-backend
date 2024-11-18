@@ -15,11 +15,11 @@ const ReformSchema = new mongoose.Schema({
         
     },
     repairNumber: {
-        type: Number,
+        type: String,
         required:true
     },
     ticketNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     date: {
