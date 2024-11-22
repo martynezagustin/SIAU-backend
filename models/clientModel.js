@@ -5,6 +5,7 @@ const ClientSchema = new mongoose.Schema({
     patentVehicle: {type: String}, //numero de patente, hay que agregar
     address: {type: String, required: true},
     phone: {type: String, required: true},
+    DNI: {type: Number, required: false},
     vehicleBrand: {type: String, required: true},
     vehicleModel: {type: String, required: true},
     mileage: {type: Number, required: true},

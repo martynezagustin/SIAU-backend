@@ -4,13 +4,13 @@ const Piece = require("../models/pieceModel")
 
 const clientController = {
     addClient: async function (req, res) {
-        const { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage, reforms } = req.body
+        const { name, lastname, patentVehicle, address, phone, DNI, vehicleBrand, vehicleModel, mileage, reforms } = req.body
         try {
-            const newClient = new Client({ name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage })
-            const busqueda = await Client.findOne({ name, lastname })
+            const newClient = new Client({ name, lastname, patentVehicle, address, phone, DNI, vehicleBrand, vehicleModel, mileage })
+            const busqueda = await Client.findOne({ name, lastname, vehicleBrand, vehicleModel })
             if (busqueda) {
-                return res.status(404).send({message:"El cliente ya existe."})
-                
+                return res.status(404).send({ message: "El cliente ya existe." })
+
             }
             const reformsAdd = reforms.map(async (reform) => {
                 const newReform = new Reform({ ...reform, clientId: newClient._id })
@@ -48,9 +48,9 @@ const clientController = {
         try {
             const clientToDelete = await Client.findByIdAndDelete(req.params.clientId)
             if (!clientToDelete) {
-                return res.status(404).send({message: "No se pudo encontrar el cliente."})
+                return res.status(404).send({ message: "No se pudo encontrar el cliente." })
             }
-            res.status(200).send({message:"Cliente borrado exitosamente."})
+            res.status(200).send({ message: "Cliente borrado exitosamente." })
         } catch (error) {
             res.status(500).send("Ha ocurrido un error de servidor.")
         }
@@ -58,16 +58,16 @@ const clientController = {
     updateClient: async function (req, res) {
         try {
             console.log(req.params.clientId);
-            
-            const { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage } = req.body
-            const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, patentVehicle, address, phone, vehicleBrand, vehicleModel, mileage }, { new: true })
+
+            const { name, lastname, patentVehicle, address, phone, DNI, vehicleBrand, vehicleModel, mileage } = req.body
+            const updatedClient = await Client.findByIdAndUpdate(req.params.clientId, { name, lastname, patentVehicle, address, phone, DNI, vehicleBrand, vehicleModel, mileage }, { new: true })
             if (!updatedClient) {
                 return res.status(404).send("No se pudo actualizar el cliente.")
             }
-            res.status(200).send({message: "Cliente actualizado exitosamente."})
+            res.status(200).send({ message: "Cliente actualizado exitosamente." })
         } catch (error) {
             console.log(error)
-            res.status(500).send({message: "Ha ocurrido un error de servidor. " + error})
+            res.status(500).send({ message: "Ha ocurrido un error de servidor. " + error })
         }
     },
     getClientById: async function (req, res) {
